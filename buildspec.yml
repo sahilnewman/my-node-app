@@ -5,14 +5,24 @@ phases:
     runtime-versions:
       nodejs: 14
     commands:
+      - echo Logging in to CodeArtifact...
+      - aws codeartifact login --tool npm --domain adv-devops --domain-owner 905418193656 --repository my-npm-repo
       - echo Installing dependencies...
       - npm install
   build:
     commands:
       - echo Build started...
+      - echo Creating package...
+      - npm pack
+      - pwd
+      - ls
+      - echo Publishing to CodeArtifact...
+      - npm publish
   post_build:
     commands:
       - echo Build completed
+      - ls
+      - pwd
 artifacts:
   files:
     - '**/*'
