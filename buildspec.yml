@@ -9,11 +9,6 @@ phases:
       - aws codeartifact login --tool npm --domain adv-devops --domain-owner 905418193656 --repository my-npm-repo
       - echo Installing dependencies...
       - npm install
-  pre-build: 
-    commands: 
-      - echo Running tests....
-      - npm install --save-dev jest
-
   build:
     commands:
       - echo Build started...
