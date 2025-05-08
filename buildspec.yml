@@ -3,12 +3,17 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      nodejs: 14
+      nodejs: 18
     commands:
       - echo Logging in to CodeArtifact...
       - aws codeartifact login --tool npm --domain adv-devops --domain-owner 905418193656 --repository my-npm-repo
       - echo Installing dependencies...
       - npm install
+  pre-build: 
+    commands: 
+      - echo Running tests....
+      - npm install --save-dev jest
+
   build:
     commands:
       - echo Build started...
@@ -17,6 +22,8 @@ phases:
       - pwd
       - ls
       - echo Publishing to CodeArtifact...
+      - npm version patch # <--- this will auto version bump
+      - cat package.json
       - npm publish
   post_build:
     commands:

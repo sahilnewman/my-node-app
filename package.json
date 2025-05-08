@@ -4,6 +4,7 @@
   "description": "My npm package >> AWS CodeArtifact mein jayega",
   "main": "app/server.js",
   "scripts": {
+    "test" : "jest",
     "start": "node app/server.js"
   },
   "author": "DevOps Team",
